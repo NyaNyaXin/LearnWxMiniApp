@@ -1,2 +1,16 @@
-<!--pages/list/list.wxml-->
-<text>pages/list/list.wxml</text>
+<view>
+  <swiper indicator-dots indicator-color="blue" indicator-active-color="red">
+    <swiper-item >
+      <image  src='/images/detail/carousel/01.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image  src='/images/detail/carousel/02.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image  src='/images/detail/carousel/03.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image  src='/images/detail/carousel/04.jpg'></image>
+    </swiper-item>
+  </swiper>
+</view>
