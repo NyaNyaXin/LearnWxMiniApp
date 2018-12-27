@@ -8,11 +8,7 @@ Page({
     userInfo: {}
   },
   onLoad: function () {
-
-this.getUserInfo();
-    
-
-    
+    this.getUserInfo();
   },
   handlerGetUserInfo(data){
     console.log(data)
@@ -50,6 +46,12 @@ this.getUserInfo();
         console.log("fail");
       }
     })  
+  },
+  handlerClick(){
+    //点击跳转到list
+    wx.navigateTo({
+      url: '/pages/list/list'
+    })
   }
   
 })
