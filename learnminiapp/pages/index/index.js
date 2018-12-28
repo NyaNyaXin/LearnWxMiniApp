@@ -1,57 +1,85 @@
-//index.js
-//获取应用实例
-const app = getApp()
+// pages/index/index.js
+Page({ // 注册当前页面
 
-Page({
+  /**
+   * 页面的初始数据
+   */
   data: {
-    motto: '需要授权小程序获取您的信息',
-    userInfo: {}
+		userInfo: {}
   },
-  onLoad: function () {
-    this.getUserInfo();
+
+	handleParent(){
+		console.log('父元素');
+		// 跳转页面
+		wx.switchTab({
+			url: '/pages/list/list',
+			success(){
+				console.log('跳转成功');
+			}
+		})
+	},
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+		console.log('页面加载完毕');
+		console.log(this)
+		// 开启定时器，发送ajax请求
+		// 获取登录用户信息
+		wx.getUserInfo({
+			success: (data) => {
+				console.log(data);
+				this.setData({userInfo: data.userInfo});
+			}
+		})
   },
-  handlerGetUserInfo(data){
-    console.log(data)
-    if(data.detail.rawData){
-      console.log("aaa")
-      this.getUserInfo();
-    }
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+		console.log('页面初始化渲染完毕');
   },
-  getUserInfo(){
-    wx.getSetting({
-      success: (data) => {
-        console.log(data)
-        if (data.authSetting['scope.userInfo']) {
-          console.log("授权了")
-          this.setData({
-            isShow: false
-          })
-        } else {
-          console.log("没有授权")
-          this.setData({
-            isShow: true
-          })
-        }
-      }
-    }),
-    //获取用户登录的信息
-    wx.getUserInfo({
-      success: (data) => {
-        console.log(data)
-        this.setData({
-          userInfo: data.userInfo
-        })
-      },
-      fail: (data) => {
-        console.log("fail");
-      }
-    })  
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+		console.log('页面显示完毕');
   },
-  handlerClick(){
-    //点击跳转到list
-    wx.navigateTo({
-      url: '/pages/list/list'
-    })
-  }
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+		console.log('页面隐藏毕');
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
   
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
 })
